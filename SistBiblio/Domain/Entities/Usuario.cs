@@ -11,6 +11,7 @@ namespace Domain.Entities
         {
             Nome = nome;
             CPF = cpf;
+            EmprestimosAtivos = new List<Emprestimo>();
         }
     }
 }

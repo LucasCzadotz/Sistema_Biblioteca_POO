@@ -1,3 +1,4 @@
+using System.Diagnostics.Tracing;
 using Domain.Contracts;
 
 namespace Domain.Entities
@@ -23,9 +24,20 @@ namespace Domain.Entities
             Console.WriteLine($"Localizacao do livro: {LocPrateleira}");
         }       
 
-        public override Emprestimo Emprestar(Usuario usuario)
+        public Emprestimo Emprestar(Usuario usuario)
         {
-            -----------------------------------------------
+            if (Disponivel is true)
+            {
+                var emprestimo = new Emprestimo(DateTime.Now, "Ativo", usuario, this);
+                Disponivel = false;
+                return emprestimo;
+            }
+            throw new Exception("Livro não disponível para empréstimo.");
+        }
+
+        public void Devolver()
+        {
+            Disponivel = true;
         }
     }
 }

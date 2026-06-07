@@ -3,7 +3,7 @@ namespace Domain.Contracts
 {
     public interface IEmprestavel
     {
-        public Emprestimo Emprestar();
+        public Emprestimo Emprestar(Usuario usuario);
 
         public void Devolver();
     }
